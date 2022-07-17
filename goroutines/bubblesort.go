@@ -7,12 +7,10 @@ func BubbleSort(list []int, wg *sync.WaitGroup) {
 		defer wg.Done()
 	}
 	// Do not use this in production!
-	for i := 0; i < len(list)-1; i++ {
-		for j := 0; j < len(list)-1; j++ {
-			if list[j] > list[j+1] {
-				temp := list[j]
-				list[j] = list[j+1]
-				list[j+1] = temp
+	for i := 1; i < len(list); i++ {
+		for j, k := 0, 1; j < len(list)-i; j, k = j+1, k+1 {
+			if list[j] > list[k] {
+				list[j], list[k] = list[k], list[j]
 			}
 		}
 	}
